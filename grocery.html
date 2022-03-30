@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Grocery List Making Website:</title>
+</head>
+
+<body>
+    <fieldset>
+        <legend>By Pramish</legend>
+
+        <!-- Add Item here -->
+        Enter your grocery name here: <input type="text" onfocus="this.value=''" id="inputText">
+
+        <button onClick="myFunction(document.getElementById('inputText').value)">Add Item</button><br><br>
+
+        <br>
+        <!-- Remove Item here: -->
+        Enter your grocery number here to remove : <input type="number" onfocus="this.value=''" id="removeText">
+
+        <button onClick="removeItem(document.getElementById('removeText').value)">Remove Item</button><br><br>
+
+        <p id="invalid"></p>
+
+        <legend>Your List:</legend>
+        <fieldset style="background-color: rgb(125, 224, 150)">
+
+            <p id="list" style="color: rgb(48, 28, 28)" style="background-color: rgb(32, 32, 173)"></p>
+
+        </fieldset>
+
+    </fieldset>
+
+    <script>
+        var groceryArray = [];
+
+        function myFunction(received) {
+            let second = "";
+            groceryArray.push(received);
+            console.log(groceryArray);
+
+            for (let i = 0; i < groceryArray.length; i++) {
+                second = second + (i + 1).toString() + ". " + groceryArray[i] + "<br>";
+            }
+
+            document.getElementById('list').innerHTML = second;
+        };
+
+        function removeItem(remove) {
+            console.log(typeof (remove));
+            let first = "";
+            let remov = parseInt(remove) - 1;
+
+            groceryArray.splice(remov, 1);
+            console.log(groceryArray);
+
+            if ((parseInt(remove) - 1) > groceryArray.length) {
+                document.getElementById('list').innerHTML = "Randi, where is your mind?";
+            }
+            else {
+                for (let i = 0; i < groceryArray.length; i++) {
+
+                    first = first + (i + 1).toString() + ". " + groceryArray[i] + "<br>";
+                }
+                document.getElementById('list').innerHTML = first;
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>
